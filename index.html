@@ -4,8 +4,15 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="/ambasa1.jpg" type="image/jpeg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://localhost:8000; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-eval';">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://localhost:8000; script-src 'self' 'unsafe-eval'; connect-src 'self' http://localhost:8000;">
+    
+    <!-- ✅ Corrected single CSP meta tag -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self' http://localhost:8000;
+      style-src 'self' 'unsafe-inline';
+      script-src 'self' 'unsafe-eval';
+      connect-src 'self' http://localhost:8000;
+    ">
+
     <title>Ambasa Coach</title>
   </head>
   <body>
