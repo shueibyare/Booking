@@ -10,79 +10,73 @@ const Wrapper = ({ token, handleLogout, children }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="d-flex flex-column min-vh-100 bg-light">
       {/* Navigation */}
-      <nav className="bg-white shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            {/* Left side navigation */}
-            <div className="flex items-center space-x-8">
+      <nav className="navbar navbar-expand-lg bg-white shadow-sm">
+        <div className="container">
+          {/* Left: Logo and Nav */}
+          <Link to="/" className="navbar-brand d-flex align-items-center text-primary fw-bold">
+            <img 
+              src="/ambasa1.jpg" 
+              alt="Ambasa Coach Logo" 
+              className="rounded-circle me-2" 
+              style={{ height: '32px', width: '32px', objectFit: 'cover' }} 
+            />
+            Ambasa Coach
+          </Link>
+
+          {/* Right: Navigation Buttons */}
+          <div className="d-flex align-items-center ms-auto">
+            {token && (
               <Link 
-                    to="/" 
-                    className="flex items-center space-x-2 text-indigo-600 hover:text-indigo-800 transition-colors"
-                    >
-                    <img 
-                        src="/ambasa1.jpg" 
-                        alt="Ambasa Coach Logo" 
-                        className="h-8 w-8 rounded-full object-cover"
-                    />
-                    <span className="text-xl font-bold">Ambasa Coach</span>
-                </Link>
+                to="/my-bookings" 
+                className="btn btn-outline-secondary me-2"
+              >
+                My Bookings
+              </Link>
+            )}
 
-              
-              {token && (
+            {token ? (
+              <button 
+                onClick={logout} 
+                className="btn text-white me-2"
+                style={{ backgroundColor: '#4F46E5' }} // Bootstrap doesn't have exact Tailwind indigo
+              >
+                Logout
+              </button>
+            ) : (
+              <>
                 <Link 
-                  to='/my-bookings' 
-                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-100 transition-colors"
+                  to="/register" 
+                  className="btn text-primary fw-semibold me-2 border-0"
+                  style={{ backgroundColor: 'transparent' }}
                 >
-                  My Bookings
+                  Register
                 </Link>
-              )}
-            </div>
-
-            {/* Right side navigation */}
-            <div className="flex items-center space-x-4">
-              {token ? (
-                <button 
-                  onClick={logout}
-                  className="px-4 py-2 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                <Link 
+                  to="/login" 
+                  className="btn text-white"
+                  style={{ backgroundColor: '#4F46E5' }}
                 >
-                  Logout
-                </button>
-              ) : (
-                <>
-                  <Link 
-                    to="/register" 
-                    className="px-4 py-2 rounded-md text-sm font-medium text-indigo-600 hover:text-indigo-800 transition-colors"
-                  >
-                    Register
-                  </Link>
-                  <Link 
-                    to="/login" 
-                    className="px-4 py-2 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  >
-                    Login
-                  </Link>
-                </>
-              )}
-            </div>
+                  Login
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </nav>
 
       {/* Main content */}
-      <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
-        <div className="bg-white shadow-sm rounded-lg p-6">
+      <main className="flex-grow-1 container py-4">
+        <div className="bg-white shadow-sm rounded p-4">
           {children}
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} TravelEase. All rights reserved.
-          </p>
+      <footer className="bg-white border-top py-3 mt-auto">
+        <div className="container text-center text-muted small">
+          &copy; {new Date().getFullYear()} TravelEase. All rights reserved.
         </div>
       </footer>
     </div>
